@@ -13,4 +13,116 @@ source("setup.R")
 data("penguins")
 penguins
 ```
+```{r}
+class(penguins)
+str(penguins)
+```
+```{r}
+class(penguins$species)
+str(penguins$species)
+```
+```{r}
+myList <- list("apple", 1993, FALSE, penguins)
+str(myList)
+```
+```{r}
+list(myList, list("more stuff here", list("and more")))
+```
+```{r}
+names(myList) <- c("fruit", "year", "logic", "data")
+names(myList)
+
+```
+# Indexing
+
+# for lists we use double brackes [[]]
+```{r}
+myList[[1]]
+
+myList[["data"]]
+```
+
+# for vectors we use single brackets []
+```{r}
+myVector <- c("apple", "banana", "pear")
+myVector[2]
+```
+# index data frames
+
+# dataframe[row(s), columns()]
+```{r}
+penguins[1:5, 2]
+
+penguins[1:5, "island"]
+
+penguins[1, 1:5]
+
+penguins[1:5, c("species","sex")]
+
+penguins[penguins$sex=='female',]
+```
+
+# $ for a single column
+```{r}
+penguins$species
+```
+
+# 6.3.1 Exercises
+
+# 1. Why don’t the following lines of code work? Tweak each one so the code runs.
+```{r}
+myList[["fruit"]]
+```
+```{r}
+penguins$flipper_length_mm
+```
+
+```{r}
+penguins[penguins$island=='Dream',]
+```
+
+# 2. How many species are in the penguins dataset? What islands were the data collected for? (Note: the unique() function might help)
+```{r}
+length(unique(penguins$species))
+```
+# 3. Use indexing to create a new data frame that has only 3 columns: species, island and flipper length columns, and subset all rows for just the ‘Dream’ island.
+```{r}
+
+```
+
+# dataframe[row(s), columns()]
+```{r}
+penguins[penguins$island =="Dream", c("species","island", "flipper_length_mm")]
+```
+
+# 4. Use indexing and the mean() function to find the average flipper length for the Adelie species on Dream island. (Note: explore the mean() function and how to deal with NA values).
+```{r}
+avgflipper <- penguins[penguins$island == "Dream" & penguins$species == "Adelie",]
+mean(avgflipper$flipper_length_mm)
+```
+
+# 6.4 The dplyr package
+
+```{r}
+library(dplyr)
+```
+
+# Subset rows with filter
+```{r}
+filter(penguins, species == "Adelie")
+
+filter(penguins, species != "Adelie")
+
+filter(penguins, island %in% c("Dream", "Torgersen") & !is.na(bill_length_mm))
+```
+
+# Subset columns with select()
+```{r}
+?select
+```
+
+```{r}
+
+```
+
 
