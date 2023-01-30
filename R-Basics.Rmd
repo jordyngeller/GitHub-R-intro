@@ -121,8 +121,4 @@ filter(penguins, island %in% c("Dream", "Torgersen") & !is.na(bill_length_mm))
 ?select
 ```
 
-```{r}
-
-```
-
-
+# test
