@@ -78,6 +78,7 @@ penguins$species
 ```{r}
 myList[["fruit"]]
 ```
+
 ```{r}
 penguins$flipper_length_mm
 ```
@@ -86,13 +87,16 @@ penguins$flipper_length_mm
 penguins[penguins$island=='Dream',]
 ```
 
+
 # 2) How many species are in the penguins dataset? What islands were the data collected for? (Note: the unique() function might help)
 ```{r}
 length(unique(penguins$species))
 ```
+
+
 # 3) Use indexing to create a new data frame that has only 3 columns: species, island and flipper length columns, and subset all rows for just the ‘Dream’ island.
 ```{r}
-
+penguins[penguins$island == "Dream", c("species", "island", "flipper_length_mm")]
 ```
 
 # dataframe[row(s), columns()]
@@ -125,6 +129,7 @@ filter(penguins, island %in% c("Dream", "Biscoe") & !is.na(bill_length_mm))
 ```{r}
 ?select
 ```
+
 
 # Select two specific variables
 ```{r}
@@ -251,21 +256,28 @@ penguins %>%
 
 ```{r}
 ggplot(penguins) + 
-  geom_histogram(mapping = aes(x = flipper_length_mm))
+  geom_histogram(mapping = aes(x = flipper_length_mm), bins = 10, na.rm = TRUE)
 ```
+
+
 # Histogram example: flipper length by species
 ```{r}
 ggplot(penguins) +
   geom_histogram(aes(x = flipper_length_mm, fill = species), alpha = 0.5, position = "identity") +
   scale_fill_manual(values = c("darkorange","darkorchid","cyan4"))
 ```
+
+
+
 # create a seperate plot for each species
 ```{r}
 ggplot(penguins) +
   geom_histogram(aes(x = flipper_length_mm, fill = species), alpha = 0.5, position = "identity") +
-  scale_fill_manual(values = c("darkorange","darkorchid","cyan4")) +
-  facet_wrap(~species)
+  scale_fill_manual(values = c("darkorange","darkorchid","cyan4"))
 ```
+
+
+
 ```{r}
 ggplot(penguins) +
   geom_bar(mapping = aes(x = island, fill = species))
@@ -281,6 +293,7 @@ ggplot(penguins, aes(x = island, fill = species)) +
   coord_flip()
 ```
 
+# create a seperate plot for each species
 ```{r}
 ggplot(penguins) +
   geom_point(mapping = aes(x = body_mass_g, y = flipper_length_mm, color = species))
@@ -297,6 +310,7 @@ ggplot(penguins) +
 
 
 # 2) Make a scatter plot of bill length compared to bill depth but only for observations on the Dream island.
+# first try
 ```{r}
 ggplot(penguins) +
   geom_point(mapping = aes(x = bill_length_mm, y = bill_depth_mm, fill = 'Dream'))
@@ -308,5 +322,4 @@ penguins %>%
   ggplot() +
   geom_point(mapping = aes(x = bill_length_mm, y = bill_depth_mm))
 ```
-
 
