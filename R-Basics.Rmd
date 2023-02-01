@@ -293,8 +293,6 @@ ggplot(penguins) +
 ```{r}
 ggplot(penguins) +
  geom_bar(mapping = aes(x = species, fill =  mean(flipper_length_mm)))
-
-
 ```
 
 
@@ -302,8 +300,8 @@ ggplot(penguins) +
 ```{r}
 ggplot(penguins) +
   geom_point(mapping = aes(x = bill_length_mm, y = bill_depth_mm, fill = 'Dream'))
-
 ```
+
 ```{r}
 penguins %>%
   filter(island == "Dream") %>%
